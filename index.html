@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ANVATT · Defesa Jurídica em Direito de Trânsito</title>
+<meta name="description" content="ANVATT — Escritório especializado em defesas e recursos de multas de trânsito, suspensão e cassação de CNH. Goiânia, Goiás." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:            #0f110f;
+    --bg-elev:       #14161410;
+    --ink:           #e9e4d6;
+    --ink-dim:       #a8a296;
+    --ink-mute:      #6b6558;
+    --gold:          #b89558;
+    --gold-soft:     #d4b378;
+    --gold-deep:     #8a6d3e;
+    --line:          #2a2a25;
+    --paper:         #f3ede0;
+    --paper-ink:     #1a1a17;
+    --accent-red:    #7a2a1e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Subtle paper grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: .04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  .display { font-family: 'Playfair Display', serif; }
+
+  /* ========= NAVIGATION ========= */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all .4s ease;
+    background: linear-gradient(to bottom, rgba(15,17,15,.95), rgba(15,17,15,0));
+    backdrop-filter: blur(8px);
+  }
+  nav.scrolled {
+    background: rgba(15,17,15,.96);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 48px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand-mark {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: .08em;
+    color: var(--gold-soft);
+  }
+  .brand-tag {
+    font-size: 10px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    transition: color .3s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--gold-soft); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 0; height: 1px;
+    background: var(--gold-soft);
+    transition: width .3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    padding: 10px 22px;
+    border: 1px solid var(--gold-deep);
+    color: var(--gold-soft) !important;
+    transition: all .3s !important;
+  }
+  .nav-cta:hover {
+    background: var(--gold-deep);
+    color: var(--bg) !important;
+  }
+  .nav-cta::after { display: none; }
+
+  .mobile-toggle { display: none; background: none; border: none; color: var(--ink); cursor: pointer; }
+
+  /* ========= HERO ========= */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 48px 80px;
+    overflow: hidden;
+  }
+
+  /* Hero decorative background */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: .5;
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 70%; height: 140%;
+    background: radial-gradient(ellipse at center, rgba(184,149,88,.12) 0%, transparent 60%);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -30%; left: -15%;
+    width: 60%; height: 120%;
+    background: radial-gradient(ellipse at center, rgba(122,42,30,.08) 0%, transparent 60%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+    animation: fadeUp 1.2s cubic-bezier(.2,.8,.2,1) both;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold-deep);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: clamp(42px, 5.5vw, 78px);
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    margin-bottom: 32px;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-soft);
+    font-weight: 400;
+  }
+  .hero h1 .accent {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: .55em;
+    margin-top: 8px;
+    letter-spacing: .02em;
+  }
+
+  .hero p.lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink-dim);
+    margin-bottom: 48px;
+    max-width: 540px;
+    font-weight: 400;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    padding: 18px 36px;
+    background: var(--gold-deep);
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all .3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--gold-deep);
+  }
+  .btn-primary:hover {
+    background: var(--gold-soft);
+    border-color: var(--gold-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(184,149,88,.2);
+  }
+  .btn-primary svg { transition: transform .3s; }
+  .btn-primary:hover svg { transform: translateX(4px); }
+
+  .btn-secondary {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--line);
+    transition: all .3s;
+  }
+  .btn-secondary:hover {
+    border-bottom-color: var(--gold-soft);
+    color: var(--gold-soft);
+  }
+
+  /* Hero right column - emblem/seal */
+  .hero-emblem {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1.8s ease .4s both;
+  }
+  .emblem-container {
+    position: relative;
+    width: 440px;
+    height: 440px;
+  }
+  .emblem-ring {
+    position: absolute;
+    inset: 0;
+    animation: rotate 60s linear infinite;
+  }
+  .emblem-core {
+    position: absolute;
+    inset: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--gold-deep);
+    border-radius: 50%;
+    text-align: center;
+  }
+  .emblem-core::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(184,149,88,.2);
+    border-radius: 50%;
+  }
+  .emblem-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    letter-spacing: .1em;
+    color: var(--gold-soft);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .emblem-sub {
+    font-size: 9px;
+    letter-spacing: .4em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    padding: 0 20px;
+  }
+  .emblem-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-deep);
+    margin: 12px 0;
+  }
+  .emblem-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-mute);
+    letter-spacing: .2em;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 48px;
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    z-index: 2;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold-deep), transparent);
+    margin: 12px auto 0;
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  /* ========= SECTIONS GENERAL ========= */
+  section {
+    position: relative;
+    padding: 140px 48px;
+    z-index: 2;
+  }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .section-label::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold-deep);
+  }
+  .section-label .roman {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--ink-mute);
+    letter-spacing: .1em;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -.015em;
+    margin-bottom: 24px;
+    max-width: 800px;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--gold-soft);
+  }
+
+  .section-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--ink-dim);
+    max-width: 680px;
+    line-height: 1.55;
+    margin-bottom: 80px;
+  }
+
+  /* ========= ABOUT ========= */
+  #sobre {
+    border-top: 1px solid var(--line);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-visual {
+    position: sticky;
+    top: 120px;
+  }
+  .about-quote {
+    padding: 48px 40px;
+    border-left: 2px solid var(--gold-deep);
+    background: linear-gradient(135deg, rgba(184,149,88,.04), transparent);
+    position: relative;
+  }
+  .about-quote::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: var(--gold-deep);
+    opacity: .4;
+    line-height: 1;
+  }
+  .about-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .about-quote footer {
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+
+  .about-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 28px;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+  .about-body p {
+    margin-bottom: 22px;
+    color: var(--ink-dim);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .about-body p strong { color: var(--ink); font-weight: 500; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 56px;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+  }
+  .stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: var(--gold-soft);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat .lbl {
+    font-size: 10px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ========= SERVICES ========= */
+  #servicos {
+    background: #0c0e0c;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+
+  .service-card {
+    padding: 56px 48px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    transition: all .5s;
+    cursor: default;
+    background: transparent;
+  }
+  .service-card:hover {
+    background: linear-gradient(135deg, rgba(184,149,88,.05), transparent);
+  }
+  .service-card:hover .service-num {
+    color: var(--gold-soft);
+  }
+
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-mute);
+    margin-bottom: 32px;
+    letter-spacing: .2em;
+    transition: color .4s;
+  }
+
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 32px;
+    color: var(--gold-soft);
+  }
+
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+
+  .service-card p {
+    color: var(--ink-dim);
+    font-size: 14px;
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+
+  .service-list {
+    list-style: none;
+    padding: 0;
+  }
+  .service-list li {
+    font-size: 13px;
+    color: var(--ink-dim);
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    border-bottom: 1px dashed rgba(107,101,88,.2);
+  }
+  .service-list li:last-child { border-bottom: none; }
+  .service-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold-deep);
+  }
+
+  /* ========= PROCESS ========= */
+  #processo {
+    background: var(--bg);
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 0; right: 0;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .process-step {
+    position: relative;
+    padding: 0 28px 0 0;
+  }
+  .step-num {
+    width: 56px; height: 56px;
+    border: 1px solid var(--gold-deep);
+    border-radius: 50%;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold-soft);
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 2;
+  }
+  .process-step h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .process-step p {
+    font-size: 14px;
+    color: var(--ink-dim);
+    line-height: 1.7;
+  }
+
+  /* ========= CONTACT ========= */
+  #contato {
+    background: var(--paper);
+    color: var(--paper-ink);
+    border-top: 1px solid var(--line);
+  }
+  #contato .section-label { color: var(--gold-deep); }
+  #contato .section-label::before { background: var(--gold-deep); }
+  #contato .section-label .roman { color: rgba(26,26,23,.5); }
+  #contato .section-title { color: var(--paper-ink); }
+  #contato .section-title em { color: var(--gold-deep); }
+  #contato .section-intro { color: rgba(26,26,23,.7); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info {
+    padding-right: 40px;
+  }
+  .contact-block {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(26,26,23,.12);
+  }
+  .contact-block:last-child { border-bottom: none; }
+  .contact-block .label {
+    font-size: 10px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: rgba(26,26,23,.5);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .contact-block .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--paper-ink);
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    transition: color .3s;
+  }
+  .contact-block a.value:hover { color: var(--gold-deep); }
+  .contact-block .sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: rgba(26,26,23,.7);
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  .contact-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .btn-dark {
+    padding: 18px 32px;
+    background: var(--paper-ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all .3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-dark:hover {
+    background: var(--gold-deep);
+    transform: translateY(-2px);
+  }
+  .btn-whats {
+    padding: 18px 32px;
+    background: #25d366;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all .3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-whats:hover {
+    background: #1fb057;
+    transform: translateY(-2px);
+  }
+
+  /* Form */
+  .contact-form {
+    background: #fff;
+    padding: 48px 44px;
+    border: 1px solid rgba(26,26,23,.1);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.15);
+  }
+  .contact-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: var(--paper-ink);
+  }
+  .contact-form .form-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(26,26,23,.65);
+    margin-bottom: 32px;
+  }
+
+  .form-row {
+    margin-bottom: 22px;
+  }
+  .form-row label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: rgba(26,26,23,.6);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .form-row input,
+  .form-row textarea,
+  .form-row select {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid rgba(26,26,23,.2);
+    background: transparent;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--paper-ink);
+    transition: border-color .3s;
+    outline: none;
+  }
+  .form-row input:focus,
+  .form-row textarea:focus,
+  .form-row select:focus {
+    border-bottom-color: var(--gold-deep);
+  }
+  .form-row textarea { resize: vertical; min-height: 90px; }
+
+  .form-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .form-submit {
+    margin-top: 12px;
+    width: 100%;
+    padding: 18px;
+    background: var(--paper-ink);
+    color: var(--paper);
+    border: none;
+    font-size: 12px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all .3s;
+  }
+  .form-submit:hover {
+    background: var(--gold-deep);
+  }
+  .form-note {
+    font-size: 11px;
+    color: rgba(26,26,23,.5);
+    margin-top: 14px;
+    text-align: center;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ========= FOOTER ========= */
+  footer {
+    background: #090a09;
+    padding: 80px 48px 40px;
+    color: var(--ink-dim);
+    border-top: 1px solid var(--line);
+    position: relative;
+    z-index: 2;
+  }
+  .footer-grid {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--line);
+  }
+  .footer-brand .brand-mark {
+    display: block;
+    margin-bottom: 12px;
+  }
+  .footer-brand p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-dim);
+    margin-top: 16px;
+    max-width: 340px;
+    line-height: 1.55;
+  }
+  .footer-col h5 {
+    font-size: 10px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color .3s;
+  }
+  .footer-col a:hover { color: var(--gold-soft); }
+  .footer-col p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+  }
+
+  .footer-bottom {
+    max-width: 1240px;
+    margin: 32px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: .1em;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-bottom .oab {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+  }
+
+  /* ========= FLOATING WHATSAPP ========= */
+  .whats-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    width: 60px; height: 60px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(37,211,102,.4);
+    z-index: 50;
+    transition: all .3s;
+  }
+  .whats-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(37,211,102,.5);
+  }
+
+  /* ========= ANIMATIONS ========= */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes scrollLine {
+    0%, 100% { transform: scaleY(1); transform-origin: top; }
+    50% { transform: scaleY(.3); transform-origin: top; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s, transform 1s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========= RESPONSIVE ========= */
+  @media (max-width: 980px) {
+    nav { padding: 18px 24px; }
+    .nav-links {
+      position: fixed;
+      top: 70px;
+      right: 0;
+      background: rgba(15,17,15,.98);
+      backdrop-filter: blur(10px);
+      flex-direction: column;
+      gap: 0;
+      width: 85%;
+      max-width: 340px;
+      height: calc(100vh - 70px);
+      padding: 40px 32px;
+      transform: translateX(100%);
+      transition: transform .4s;
+      border-left: 1px solid var(--line);
+    }
+    .nav-links.open { transform: translateX(0); }
+    .nav-links li { width: 100%; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .nav-links a { font-size: 13px; }
+    .mobile-toggle { display: block; z-index: 101; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 100px 24px 60px;
+      gap: 48px;
+      text-align: left;
+    }
+    .hero-scroll { display: none; }
+    .emblem-container { width: 300px; height: 300px; }
+    .emblem-brand { font-size: 32px; }
+
+    section { padding: 80px 24px; }
+    .about-grid,
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-visual { position: relative; top: 0; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 40px 28px; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 40px 20px; }
+    .process-steps::before { display: none; }
+    .about-stats { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .stat .num { font-size: 36px; }
+    .form-duo { grid-template-columns: 1fr; gap: 0; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .contact-form { padding: 32px 24px; }
+    footer { padding: 60px 24px 32px; }
+  }
+
+  @media (max-width: 540px) {
+    .hero h1 { font-size: 40px; }
+    .section-title { font-size: 32px; }
+    .hero-cta-row { flex-direction: column; align-items: stretch; }
+    .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+    .process-steps { grid-template-columns: 1fr; gap: 32px; }
+    .about-stats { grid-template-columns: 1fr; }
+    .contact-actions { flex-direction: column; }
+    .btn-dark, .btn-whats { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="mainNav">
+  <a href="#inicio" class="brand">
+    <span class="brand-mark">ANVATT</span>
+    <span class="brand-tag">Advocacia</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Atuação</a></li>
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#contato" class="nav-cta">Consulta</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="3" y1="8" x2="21" y2="8"/>
+      <line x1="3" y1="16" x2="21" y2="16"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Direito de Trânsito · Goiânia</div>
+    <h1>
+      A defesa técnica<br>
+      da sua <em>habilitação</em>
+      <span class="accent">— e do seu direito de dirigir.</span>
+    </h1>
+    <p class="lead">
+      Escritório ANVATT — atuação especializada em defesas prévias, recursos administrativos e medidas judiciais contra multas, suspensão e cassação da Carteira Nacional de Habilitação.
+    </p>
+    <div class="hero-cta-row">
+      <a href="https://wa.me/5562984356060" class="btn-primary" target="_blank" rel="noopener">
+        Falar com o advogado
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+      <a href="#servicos" class="btn-secondary">Ver áreas de atuação</a>
+    </div>
+  </div>
+
+  <div class="hero-emblem" aria-hidden="true">
+    <div class="emblem-container">
+      <svg class="emblem-ring" viewBox="0 0 440 440">
+        <defs>
+          <path id="circlePath" d="M 220,220 m -200,0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0"/>
+        </defs>
+        <circle cx="220" cy="220" r="218" fill="none" stroke="#8a6d3e" stroke-width="1" opacity=".5"/>
+        <circle cx="220" cy="220" r="200" fill="none" stroke="#8a6d3e" stroke-width="1" opacity=".3" stroke-dasharray="2 6"/>
+        <text font-family="Playfair Display, serif" font-size="11" fill="#b89558" letter-spacing="6">
+          <textPath href="#circlePath" startOffset="0">
+            · DEFENSOR · IUSTITIAE · VIAE · CIVIS · LIBERTAS · IURIS · VIGIL ·
+          </textPath>
+        </text>
+      </svg>
+
+      <div class="emblem-core">
+        <div class="emblem-brand">ANVATT</div>
+        <div class="emblem-divider"></div>
+        <div class="emblem-sub">Advocacia<br>Direito de Trânsito</div>
+        <div class="emblem-divider"></div>
+        <div class="emblem-year">Goiânia · GO</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">Role para descobrir</div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="sobre">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-quote">
+          <p>Dirigir não é privilégio — é um direito do cidadão. Quando o Estado o restringe, cabe à advocacia garantir que o faça dentro da lei.</p>
+          <footer>— Princípio norteador do escritório</footer>
+        </div>
+      </div>
+
+      <div class="about-body reveal">
+        <div class="section-label"><span class="roman">i.</span> Sobre o Escritório</div>
+        <h2 class="section-title">Uma advocacia <em>dedicada</em> ao motorista brasileiro.</h2>
+
+        <h3>Especialização, não generalismo.</h3>
+        <p>O <strong>ANVATT</strong> é um escritório de advocacia com atuação concentrada em uma única vertical: o <strong>Direito de Trânsito</strong>. Essa especialização permite conhecimento profundo do Código de Trânsito Brasileiro, das Resoluções do CONTRAN, das normativas dos DETRANs estaduais — e, sobretudo, das brechas técnicas que frequentemente anulam autos de infração mal lavrados.</p>
+
+        <p>Atuamos em <strong>defesas prévias</strong>, <strong>recursos à JARI</strong>, <strong>recursos ao CETRAN</strong>, <strong>processos de suspensão e cassação da CNH</strong>, além de <strong>medidas judiciais</strong> quando a via administrativa se esgota. Cada caso é tratado com rigor técnico, análise documental minuciosa e estratégia personalizada.</p>
+
+        <p>Localizado em <strong>Goiânia</strong>, o escritório atende clientes em todo o território nacional por meios remotos — com o mesmo cuidado de uma advocacia presencial.</p>
+
+        <div class="about-stats">
+          <div class="stat">
+            <div class="num">+15</div>
+            <div class="lbl">Anos de<br>experiência</div>
+          </div>
+          <div class="stat">
+            <div class="num">100%</div>
+            <div class="lbl">Foco em<br>direito de trânsito</div>
+          </div>
+          <div class="stat">
+            <div class="num">BR</div>
+            <div class="lbl">Atendimento em<br>todo o país</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="servicos">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label"><span class="roman">ii.</span> Áreas de Atuação</div>
+      <h2 class="section-title">O que <em>defendemos</em> — concretamente.</h2>
+      <p class="section-intro">
+        Cada frente de atuação é construída sobre anos de prática especializada. Conheça as áreas em que o escritório pode representar seus interesses.
+      </p>
+    </div>
+
+    <div class="services-grid reveal">
+
+      <div class="service-card">
+        <div class="service-num">Nº 01</div>
+        <svg class="service-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="10" y="14" width="44" height="36" rx="2"/>
+          <line x1="10" y1="24" x2="54" y2="24"/>
+          <circle cx="20" cy="36" r="5"/>
+          <line x1="32" y1="34" x2="48" y2="34"/>
+          <line x1="32" y1="40" x2="44" y2="40"/>
+        </svg>
+        <h3>Defesa de multas<br>de trânsito</h3>
+        <p>Análise técnica de autos de infração, identificação de vícios formais e materiais, protocolo de defesa no prazo legal.</p>
+        <ul class="service-list">
+          <li>Defesa prévia (notificação da autuação)</li>
+          <li>Recurso em 1ª instância — JARI</li>
+          <li>Recurso em 2ª instância — CETRAN / CONTRANDIFE</li>
+          <li>Infrações leves, médias, graves e gravíssimas</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">Nº 02</div>
+        <svg class="service-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="14" y="18" width="36" height="28" rx="3"/>
+          <circle cx="23" cy="32" r="4"/>
+          <line x1="32" y1="28" x2="44" y2="28"/>
+          <line x1="32" y1="36" x2="40" y2="36"/>
+          <path d="M 18 14 L 46 14 M 22 10 L 42 10"/>
+          <line x1="10" y1="52" x2="54" y2="52" stroke-dasharray="3 2"/>
+        </svg>
+        <h3>Suspensão do direito<br>de dirigir</h3>
+        <p>Defesa do condutor contra processos de suspensão por acúmulo de pontos ou por infração autossuspensiva.</p>
+        <ul class="service-list">
+          <li>Defesa em processo administrativo do DETRAN</li>
+          <li>Ultrapassagem do limite de pontos na CNH</li>
+          <li>Infrações autossuspensivas (embriaguez, racha, etc.)</li>
+          <li>Pedidos de efeito suspensivo</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">Nº 03</div>
+        <svg class="service-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M 18 12 L 46 12 L 46 52 L 18 52 Z"/>
+          <line x1="24" y1="22" x2="40" y2="22"/>
+          <line x1="24" y1="28" x2="40" y2="28"/>
+          <line x1="24" y1="34" x2="36" y2="34"/>
+          <line x1="14" y1="44" x2="50" y2="20" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        <h3>Cassação da<br>Carteira de Habilitação</h3>
+        <p>Defesa técnica nos casos mais graves, em que o condutor corre o risco de perder definitivamente o direito de dirigir.</p>
+        <ul class="service-list">
+          <li>Cassação por reincidência em suspensão</li>
+          <li>Cassação por condução durante suspensão</li>
+          <li>Reabilitação após cassação</li>
+          <li>Estratégia administrativa e judicial combinada</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">Nº 04</div>
+        <svg class="service-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M 32 10 L 50 20 L 50 38 C 50 46 42 52 32 54 C 22 52 14 46 14 38 L 14 20 Z"/>
+          <path d="M 24 32 L 30 38 L 42 26"/>
+        </svg>
+        <h3>Medidas judiciais<br>e mandados de segurança</h3>
+        <p>Quando a via administrativa é insuficiente, ingressamos em juízo com as medidas cabíveis para proteger seu direito.</p>
+        <ul class="service-list">
+          <li>Mandado de segurança contra ato do DETRAN</li>
+          <li>Ação anulatória de auto de infração</li>
+          <li>Pedidos de tutela de urgência</li>
+          <li>Recursos em segunda instância</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="processo">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label"><span class="roman">iii.</span> Método de Trabalho</div>
+      <h2 class="section-title">Como <em>conduzimos</em> cada caso.</h2>
+      <p class="section-intro">
+        Transparência e rigor técnico em todas as etapas. Você sabe exatamente o que está sendo feito — e por quê.
+      </p>
+    </div>
+
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-num">i</div>
+        <h4>Análise inicial</h4>
+        <p>Avaliação gratuita do auto de infração ou notificação, com diagnóstico honesto sobre as chances reais de êxito.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">ii</div>
+        <h4>Estratégia jurídica</h4>
+        <p>Definição da melhor linha de defesa, com base nas especificidades do caso e da jurisprudência aplicável.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">iii</div>
+        <h4>Protocolo e acompanhamento</h4>
+        <p>Elaboração técnica da peça, protocolo no órgão competente e acompanhamento integral do processo.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">iv</div>
+        <h4>Comunicação transparente</h4>
+        <p>Atualizações periódicas sobre o andamento e orientação clara sobre os próximos passos a cada fase.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contato">
+  <div class="container">
+    <div class="reveal" style="margin-bottom: 64px;">
+      <div class="section-label"><span class="roman">iv.</span> Consulta Jurídica</div>
+      <h2 class="section-title">Converse com o <em>advogado.</em></h2>
+      <p class="section-intro">
+        A análise inicial do seu caso é gratuita. Entre em contato pelo meio que preferir — resposta em até 24 horas úteis.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+
+      <div class="contact-info reveal">
+        <div class="contact-block">
+          <div class="label">Telefone · WhatsApp</div>
+          <a href="https://wa.me/5562984356060" class="value" target="_blank" rel="noopener">(62) 98435-6060</a>
+          <div class="sub">Atendimento de segunda a sexta, das 8h às 18h.</div>
+        </div>
+
+        <div class="contact-block">
+          <div class="label">Escritório</div>
+          <div class="value">Rua R-2, nº 299</div>
+          <div class="sub">Setor Oeste · Goiânia, Goiás<br>CEP 74.125-030</div>
+        </div>
+
+        <div class="contact-block">
+          <div class="label">Atendimento</div>
+          <div class="value" style="font-size: 18px;">Presencial · On-line · Todo o Brasil</div>
+          <div class="sub">Reuniões por videochamada disponíveis mediante agendamento.</div>
+        </div>
+
+        <div class="contact-actions">
+          <a href="https://wa.me/5562984356060?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20consulta%20sobre%20meu%20caso." class="btn-whats" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.693.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <a href="tel:+5562984356060" class="btn-dark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Ligar agora
+          </a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form class="contact-form reveal" onsubmit="enviarWhatsApp(event)">
+        <h3>Solicitar consulta</h3>
+        <p class="form-intro">Descreva brevemente seu caso. Responderemos pelo meio de contato que preferir.</p>
+
+        <div class="form-row">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" required>
+        </div>
+
+        <div class="form-duo">
+          <div class="form-row">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" required placeholder="(00) 00000-0000">
+          </div>
+          <div class="form-row">
+            <label for="assunto">Assunto</label>
+            <select id="assunto" name="assunto">
+              <option value="Defesa de multa">Defesa de multa</option>
+              <option value="Suspensão da CNH">Suspensão da CNH</option>
+              <option value="Cassação da CNH">Cassação da CNH</option>
+              <option value="Medida judicial">Medida judicial</option>
+              <option value="Outro">Outro assunto</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="mensagem">Descreva seu caso</label>
+          <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Enviar consulta</button>
+        <p class="form-note">Seus dados não são armazenados e são enviados diretamente ao escritório.</p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-mark">ANVATT</span>
+      <span class="brand-tag">Advocacia · Direito de Trânsito</span>
+      <p>Defesa técnica em multas, suspensão e cassação da CNH. Atuação em todo o Brasil, com sede em Goiânia — Goiás.</p>
+    </div>
+
+    <div class="footer-col">
+      <h5>Navegação</h5>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Áreas de atuação</a></li>
+        <li><a href="#processo">Método</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Atuação</h5>
+      <ul>
+        <li><a href="#servicos">Defesa de multas</a></li>
+        <li><a href="#servicos">Suspensão da CNH</a></li>
+        <li><a href="#servicos">Cassação da CNH</a></li>
+        <li><a href="#servicos">Medidas judiciais</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Contato</h5>
+      <p>
+        (62) 98435-6060<br><br>
+        Rua R-2, nº 299<br>
+        Setor Oeste<br>
+        Goiânia · GO<br>
+        CEP 74.125-030
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div>© <span id="year"></span> ANVATT Advocacia · Todos os direitos reservados</div>
+    <div class="oab">“Iustitia in via — Justiça no caminho.”</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5562984356060" class="whats-float" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.693.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Nav scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Mobile menu
+  const toggle = document.getElementById('mobileToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Form → WhatsApp
+  function enviarWhatsApp(event) {
+    event.preventDefault();
+    const nome = document.getElementById('nome').value;
+    const tel  = document.getElementById('telefone').value;
+    const ass  = document.getElementById('assunto').value;
+    const msg  = document.getElementById('mensagem').value;
+    const texto =
+      `*Nova consulta via site ANVATT*%0A%0A` +
+      `*Nome:* ${encodeURIComponent(nome)}%0A` +
+      `*Telefone:* ${encodeURIComponent(tel)}%0A` +
+      `*Assunto:* ${encodeURIComponent(ass)}%0A%0A` +
+      `*Mensagem:*%0A${encodeURIComponent(msg)}`;
+    window.open(`https://wa.me/5562984356060?text=${texto}`, '_blank');
+  }
+</script>
+
+</body>
+</html>
